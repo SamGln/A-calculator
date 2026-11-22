@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link href="style.css" rel="stylesheet" >
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg==" crossorigin="anonymous" referrerpolicy="no-referrer"> -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <main>
+        <section id="main_section">
+            <h1>Calculator</h1>
+            <div id="operation_field">
+                <!-- <div id="calculation_field"><span id="empty">0</span></div> -->
+                 <input type="text" readonly id="calculation_field" name="calculation_field" placeholder="0">
+                <div id="result_field">0</div>
+            </div>
+            <div id="container">
+                <div class="symbols" id="reset">AC</div>
+                <div class="symbols" id="divide">÷</div>
+                <div class="symbols" id="multiplication">×</div>
+                <div class="symbols" id="backspace"><i class="fa-solid fa-delete-left"></i></div>
+                <div class="box"     id="seven">7</div>
+                <div class="box"     id="eight">8</div>
+                <div class="box"     id="nine">9</div>
+                <div class="symbols" id="subtraction">−</div>
+                <div class="box"     id="four">4</div>
+                <div class="box"     id="five">5</div>
+                <div class="box"     id="six">6</div>
+                <div class="symbols" id="addition">+</div>
+                <div class="box"     id="one">1</div>
+                <div class="box"     id="two">2</div>
+                <div class="box"     id="three">3</div>
+                <div class="symbols" id="equal">=</div>
+                <div class="box"     id="percentage">%</div>
+                <div class="box"     id="zero">0</div>
+                <div class="box"     id="comma">.</div>
+            </div>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
