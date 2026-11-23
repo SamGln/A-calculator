@@ -32,7 +32,7 @@ reset.addEventListener('click', () => {
     result_field.textContent = 0;
 });
 equal.addEventListener('click', () => {
-    prepareOperation();
+    checksDivisionError();
 });
 
 // 
@@ -120,24 +120,54 @@ function displayNine() {
     calculation_field.value += "9";
 }
 
-// Functions displays symbols
+// Functions displays operator symbols
 function displayDivide() {
-    calculation_field.value += " ÷ ";
+    try {
+        checks_consecutive_operators();
+        calculation_field.value += " ÷ ";
+    } catch (error) {
+        console.log(error.message);
+    }
 }
 function displayMultiplication() {
-    calculation_field.value += " × ";
+    try {
+        checks_consecutive_operators();
+        calculation_field.value += " × ";
+    } catch (error) {
+        console.log(error.message);
+    }
 }
 function displaySubtraction() {
-    calculation_field.value += " - "
+    try {
+        checks_consecutive_operators();
+        calculation_field.value += " - ";
+    } catch (error) {
+        console.log(error.message);
+    }
 }
 function displayAddition() {
-    calculation_field.value += " + "
+    try {
+        checks_consecutive_operators();
+        calculation_field.value += " + ";
+    } catch (error) {
+        console.log(error.message);
+    }
 }
 function displayPercentage() {
-    calculation_field.value += " % ";
+    try {
+        checks_consecutive_operators();
+        calculation_field.value += " % ";
+    } catch (error) {
+        console.log(error.message);
+    }
 }
 function displayComma() {
-    calculation_field.value += ".";
+    try {
+        check_consecutive_comma();
+        calculation_field.value += ".";
+    } catch (error) {
+        
+    }
 }
 
 // 
@@ -152,6 +182,7 @@ function prepareOperation() {
         } else if (character_split[i] === "-") {
             cumul -= Number(character_split[i+1]);
         } else if (character_split[i] === "÷") {
+            if(Number(character_split[i+1]) === 0) throw new Error("Cannot divide by zero");
             cumul /= Number(character_split[i+1]);
         } else if (character_split[i] === "×") {
             cumul *= Number(character_split[i+1]);
@@ -164,7 +195,7 @@ function prepareOperation() {
 
 // Display Result
 function displayResult(result) {
-    result_field.textContent = result;
+    result_field.textContent = Number(result.toFixed(2));
 }
 
 // BackSpace
@@ -179,3 +210,27 @@ backspace.addEventListener('click', () => {
     }
     calculation_field.value = one_fewer_character;
 });
+
+// Errors Handling
+function checksDivisionError() {
+    try {
+        prepareOperation();
+    } catch (error) {
+        result_field.textContent = error.message;
+    }
+}
+
+function checks_consecutive_operators() {
+    const check_characters = calculation_field.value;
+    console.log(check_characters.endsWith(" ÷ "));
+    if (check_characters.endsWith(" + ") || check_characters.endsWith(" - ") || check_characters.endsWith(" ÷ ") || check_characters.endsWith(" × ") || check_characters.endsWith(" % ")) {
+        throw new Error("Consecutive operators");
+    }
+}
+
+function check_consecutive_comma() {
+    const check_comma = calculation_field.value;
+    if (check_comma.endsWith(".")) {
+        throw new Error("Consecutive comma");
+    }
+}
