@@ -123,6 +123,7 @@ function displayNine() {
 // Functions displays operator symbols
 function displayDivide() {
     try {
+        limitToTwoNumbers();
         checks_consecutive_operators();
         calculation_field.value += " ÷ ";
     } catch (error) {
@@ -131,6 +132,7 @@ function displayDivide() {
 }
 function displayMultiplication() {
     try {
+        limitToTwoNumbers();
         checks_consecutive_operators();
         calculation_field.value += " × ";
     } catch (error) {
@@ -139,6 +141,7 @@ function displayMultiplication() {
 }
 function displaySubtraction() {
     try {
+        limitToTwoNumbers();
         checks_consecutive_operators();
         calculation_field.value += " - ";
     } catch (error) {
@@ -147,6 +150,7 @@ function displaySubtraction() {
 }
 function displayAddition() {
     try {
+        limitToTwoNumbers();
         checks_consecutive_operators();
         calculation_field.value += " + ";
     } catch (error) {
@@ -193,6 +197,24 @@ function prepareOperation() {
     displayResult(cumul);
 }
 
+// function prepareOperation() {
+//     character_string = calculation_field.value;
+//     character_split = character_string.split(" ");
+//     let cumul = 0;
+//     let multi = [];
+//     for (let i = 1; i < character_split.length; i++) {
+//         if (character_split[i] === "×") {
+//             multi.push(Number(character_split[i-1]) * Number(character_split[i+1]));
+//         }
+//     } 
+//     console.log(multi);
+// }
+
+// function multiplication_operation(nombreA, nombreB) {
+//     return nombreA * nombreB;
+// }
+
+
 // Display Result
 function displayResult(result) {
     result_field.textContent = Number(result.toFixed(2));
@@ -232,5 +254,14 @@ function check_consecutive_comma() {
     const check_comma = calculation_field.value;
     if (check_comma.endsWith(".")) {
         throw new Error("Consecutive comma");
+    }
+}
+
+
+function limitToTwoNumbers() {
+    character_string = calculation_field.value;
+    character_split = character_string.split(" ");
+    if (character_split.length >= 3) {
+        throw new Error("Stop !");
     }
 }
